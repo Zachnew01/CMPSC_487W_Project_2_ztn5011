@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Web Item System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Generic Item Management System Website</h1>
+    <p>A generic webpage for database management of any item</p>
+
+    <h2>Edit Item</h2>
+    <p>Enter the ID for the item to edit in the ID Field.
+    <br>Enter the new information into the respective fields. Leave blank to not edit.
+    </p>
+    <form method="post" enctype="multipart/form-data">
+        <label for="id">ID:</label><br>
+        <input type="text" id="id" name="id"><br>
+        <br>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br>
+        <br>
+        <label for="image">Image:</label><br>
+        <!--<input type="text" id="image" name="image"><br>-->
+        <input type="file" id="imageFile" name="imageFile" accept="image/x-png,image/gif,image/jpeg"><br>
+        <br>
+        <input type="submit" value="Edit"><br>
+    </form>
+    <br><p>{{feedback}}</p>
+
+    <br><a href="{{ url_for('mainpage') }}">Return To Main Page</a>
+
+</body>
+</html>

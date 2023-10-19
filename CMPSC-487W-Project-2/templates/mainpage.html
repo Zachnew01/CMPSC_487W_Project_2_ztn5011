@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Web Item System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Generic Item Management System Website</h1>
+    <p>A generic webpage for database management of any item</p>
+
+    <form method="post">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search">
+        <input type="submit" value="Search"><br>
+        <label for="none">No Sort:</label>
+        <input type="radio" id="none" name="sortType" value="0" checked>
+        <label for="idASC">| Sort ID Ascending:</label>
+        <input type="radio" id="idASC" name="sortType" value="1">
+        <label for="idDESC">| Sort ID Descending:</label>
+        <input type="radio" id="idDESC" name="sortType" value="2">
+        <label for="nameASC">Sort Name Ascending:</label>
+        <input type="radio" id="nameASC" name="sortType" value="3">
+        <label for="nameDESC">| Sort Name Descending:</label>
+        <input type="radio" id="nameDESC" name="sortType" value="4">
+    </form>
+    <br>
+    <br>
+
+    <form action="{{ url_for('addpage') }}">
+        <input type="submit" value="Add Item">
+        <label> | </label>
+    </form> 
+    <form action="{{ url_for('editpage') }}">
+        <input type="submit" value="Edit Item">
+        <label> | </label>
+    </form> 
+    <form action="{{ url_for('deletepage') }}">
+        <input type="submit" value="Remove Item">
+    </form>
+    <br>
+    <br>
+
+    <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Image</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+          <td>{{ item['ID'] }}</td>
+          <td>{{ item['name'] }}</td>
+          <td><p>{{ item['description'] }}</p></td>
+          {% set filepath = '/Image/' + item['image']%}
+          <td><img src= "{{url_for('static', filename=filepath)}}"></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+</body>
+</html>
